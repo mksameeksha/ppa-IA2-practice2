@@ -9,22 +9,33 @@ int input_side()
  int check_scalene(int a, int b, int c)
 {
   int isscalene;
-if(a!=b && b!=c && a!=c) 
+if(a==b && b==c) 
 {
 isscalene=a;
 }
-else
+else if(a==b || a==c || b==c) 
+{
+  isscalene=b;
+}
+else 
+{
+ isscalene=c;
+}
 return isscalene;
 }
 void output(int a, int b, int c,int isscalene)
 {
   if(isscalene==a)
   {
-  printf("The triangle with sides %d,%d,%d is scalene:\n",a,b,c);
+  printf("Equilateral triangle.");
+  }
+  else if(isscalene==b)
+  {
+   printf("Isosceles triangle.");
   }
   else 
   {
-  printf("The triangle with sides %d,%d,%d is not scalene:\n",a,b,c);
+  printf("Scalene triangle.");
   }
 }
 int main()
