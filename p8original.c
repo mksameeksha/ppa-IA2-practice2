@@ -1,39 +1,51 @@
-include<stdio.h>
-int input_side()
+#include<stdio.h>
+int input_array_size()
 {
-  int a;
-  printf("enter a side length: \n");
-  scanf("%d",&a);
-  return a;
+  int n;
+  printf("enter the size of array:");
+  scanf("%d",&n);
+  return n;
 }
-int check_scalene(int a, int b,int c)
+void input_array(int n, int a[n])
 {
-  int isscalene;
-  if (a!=b && a!=c && b!=c)
-  {
-    isscalene=0;
-  }
-  return isscalene;
+   printf("enter the values:");
+  for(int i=0;i<n;i++)
+    {
+      scanf("%d",&a[i]);
+    }
 }
-void output(int a,int b,int c,int isscalene)
+int is_composit(int n)
 {
-  if(isscalene==0)
+  for (int i=2;i<=n/2;i++)
   {
-    printf("The triange is scalene for lengths %d,%d and %d",a,b,c);
+    if (n%i==0)
+    return 1;
   }
-  else
-  {
-    printf("The triange is not scalene");
-  }
+  return 0;
 }
-
+int sum_composite_number(int n,int a[n])
+{
+  int sum=0;
+  for(int i=0; i<n; i++)
+  {
+    if(is_composit(a[i]))
+    {
+      sum+=a[i];
+    }
+  }
+  return sum;
+}
+void out_put(int sum)
+{
+  printf(" %d",sum);
+}
 int main()
 {
-  int a,b,c,isscalene;
-  a=input_side();
-  b=input_side();
-  c=input_side();
-  isscalene=check_scalene(a,b,c);
-  output(a,b,c,isscalene);
+  int n,sum;
+  n=input_array_size();
+  int a[n];
+  input_array(n,a);
+  sum=sum_composite_number(n,a);
+  out_put(sum);
   return 0;
 }
